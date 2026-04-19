@@ -485,6 +485,24 @@
           animation-iteration-count: 1 !important;
         }
       }
+      /* ============================================================
+        HERO LOGO SECTION
+      ============================================================ */
+      .hero-logo-section {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-md);
+      }
+
+      .hero-logo {
+        max-width: 90vw;
+        max-height: 80vh;
+        object-fit: contain;
+        animation: fadeSlideDown 1s ease both;
+      }
     </style>
   </head>
 
@@ -728,6 +746,14 @@
         />
       </g>
     </svg>
+
+    <!-- ============================================================
+      HERO LOGO SECTION
+      Takes up the entire viewport, reveals main content on scroll
+    ============================================================ -->
+    <header class="hero-logo-section">
+      <img src="./assets/logo.png" alt="Tatvam Logo" class="hero-logo" />
+    </header>
 
     <!-- ============================================================
     MAIN CONTENT
