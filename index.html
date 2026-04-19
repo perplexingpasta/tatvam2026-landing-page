@@ -76,7 +76,8 @@
         --space-xl: 5rem;
 
         /* Countdown tile sizing */
-        --tile-size: clamp(50px, 14vw, 130px);      }
+        --tile-size: clamp(50px, 14vw, 130px);
+      }
 
       /* ============================================================
       RESET & BASE STYLES
@@ -101,37 +102,12 @@
         color: var(--color-soft-creambeam);
         min-height: 100vh;
         overflow-x: hidden;
-        /* CSS-only textured paper effect:
-         layered radial gradients at different sizes simulate grain/texture */
-        background-image:
-          radial-gradient(
-            ellipse at 20% 20%,
-            rgba(212, 175, 55, 0.08) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            ellipse at 80% 80%,
-            rgba(0, 109, 111, 0.07) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            ellipse at 50% 50%,
-            rgba(0, 0, 0, 0.25) 0%,
-            transparent 70%
-          ),
-          /* fine noise-like dots via repeating-radial-gradient */
-          repeating-radial-gradient(
-              circle at 0 0,
-              transparent 0,
-              transparent 3px,
-              rgba(0, 0, 0, 0.03) 3px,
-              rgba(0, 0, 0, 0.03) 4px
-            );
-        background-size:
-          100% 100%,
-          100% 100%,
-          100% 100%,
-          8px 8px;
+        /* Fixed background image that scales appropriately */
+        background-image: url('./assets/red-bg.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
       }
 
       /* ============================================================
@@ -844,11 +820,15 @@
       Placeholder text — update this before going live!
     ===================================================== -->
       <p class="description" id="event-description">
-        Tatvam is the annual cultural extravaganza that brings together the
-        brightest creative minds under one roof. This year, we return with
-        <em>Riwaayat</em> — a celebration of heritage, nostalgia, and the
-        timeless spirit of India. Six days. Hundreds of events. One
-        unforgettable legacy.
+        <em>JSS Medical College</em> presents <strong>Tatvam '26</strong>
+        <br />
+        Riwaayat- because every era deserves a sequel.
+        <br />
+        Our flagship medical college fest returns with a retro revival, blending
+        nostalgia, colour, and youthful vibrance into one unforgettable
+        experience. This year’s fest is a tribute to heritage- reimagined
+        through a modern lens. Here, retro isn’t just an aesthetic. It’s a
+        memory. A feeling. A shared identity. Picture abhi baaki hai 🥀
       </p>
 
       <!-- =====================================================
@@ -859,7 +839,7 @@
       together, not just the changed part.
     ===================================================== -->
       <section class="countdown-section" aria-label="Countdown to Tatvam 2026">
-        <p class="countdown-label" id="countdown-label">The wait ends in</p>
+        <!-- <p class="countdown-label" id="countdown-label">The wait ends in</p> -->
 
         <!-- Countdown tiles grid — updated every second by JS -->
         <div
