@@ -110,13 +110,23 @@
         color: var(--color-soft-creambeam);
         min-height: 100vh;
         overflow-x: hidden;
-        /* Fixed background image that scales appropriately */
-        /* background-image: url("./assets/red-bg.png"); */
+        position: relative;
+      }
+
+      /* Robust fixed background fix for iOS Safari */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
         background-image: url("./assets/red-bg-340kb.jpg");
         background-size: cover;
         background-position: center;
-        background-attachment: fixed;
         background-repeat: no-repeat;
+        /* We use position: fixed on the element instead of background-attachment: fixed */
       }
 
       /* ============================================================
