@@ -103,7 +103,8 @@
         min-height: 100vh;
         overflow-x: hidden;
         /* Fixed background image that scales appropriately */
-        background-image: url('./assets/red-bg.png');
+        /* background-image: url("./assets/red-bg.png"); */
+        background-image: url("./assets/red-bg-340kb.jpg");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -519,7 +520,9 @@
         align-items: center;
         gap: 0.3rem;
         opacity: 0.85;
-        animation: bounce 2s infinite, fadeSlideDown 1s ease both 0.5s;
+        animation:
+          bounce 2s infinite,
+          fadeSlideDown 1s ease both 0.5s;
       }
 
       .scroll-indicator svg {
@@ -529,7 +532,11 @@
       }
 
       @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
           transform: translateY(0) translateX(-50%);
         }
         40% {
@@ -788,13 +795,17 @@
       Takes up the entire viewport, reveals main content on scroll
     ============================================================ -->
     <header class="hero-logo-section">
-      <img src="./assets/logo.png" alt="Tatvam Logo" class="hero-logo" />
-      
+      <img src="./assets/logo-350kb.png" alt="Tatvam Logo" class="hero-logo" />
+
       <!-- Skip-to-content / Scroll indicator -->
-      <a href="#main-content" class="scroll-indicator" aria-label="Skip to content">
+      <a
+        href="#main-content"
+        class="scroll-indicator"
+        aria-label="Skip to content"
+      >
         <!-- <span>scroll for more!</span> -->
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
         </svg>
       </a>
     </header>
@@ -804,7 +815,6 @@
     Semantic <main> wraps all visible page content for accessibility
   ============================================================ -->
     <main class="page-wrapper" id="main-content">
-
       <!-- Top ornamental divider -->
       <svg
         class="ornament-divider"
@@ -837,7 +847,7 @@
       <!-- <p class="theme-name" aria-label="Theme: Riwaayat">RIWAAYAT</p> -->
 
       <!-- Tagline -->
-      <p class="tagline">Because some eras deserve a sequel</p>
+      <!-- <p class="tagline">Because some eras deserve a sequel</p> -->
 
       <!-- Bottom ornamental divider (reused) -->
       <svg
