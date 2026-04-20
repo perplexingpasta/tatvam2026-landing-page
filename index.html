@@ -587,6 +587,189 @@
           transform: translateY(0) translateX(-50%);
         }
       }
+
+      /* ============================================================
+      LEAD COLLECTION FORM SECTION
+      Sits below the countdown, separated by a decorative divider.
+      Styled to feel like a vintage "register your interest" notice.
+    ============================================================ */
+
+      /* Outer section wrapper */
+      .lead-section {
+        width: 100%;
+        max-width: min(480px, 90vw);
+        margin-top: var(--space-lg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+        animation: fadeSlideDown 1s ease both;
+        animation-delay: 1.1s;
+      }
+
+      /* Section heading */
+      .lead-section__heading {
+        font-family: var(--font-subheading);
+        font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+        color: var(--color-amber-flash);
+        letter-spacing: 0.1em;
+        text-align: center;
+      }
+
+      /* Subtext below heading */
+      .lead-section__subtext {
+        font-family: var(--font-body);
+        font-size: clamp(0.75rem, 2.2vw, 0.88rem);
+        color: rgba(255, 250, 229, 0.65);
+        text-align: center;
+        line-height: 1.6;
+        max-width: 360px;
+      }
+
+      /* The card that wraps the form fields */
+      .lead-form {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 6px;
+        padding: clamp(1.2rem, 5vw, 2rem);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      /* Each label + input pair */
+      .lead-form__field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      /* Field label */
+      .lead-form__label {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-gold-ornate);
+      }
+
+      /* Text / tel input fields */
+      .lead-form__input {
+        width: 100%;
+        padding: 0.75em 1em;
+        font-family: var(--font-body);
+        font-size: clamp(0.9rem, 3vw, 1rem);
+        color: var(--color-soft-creambeam);
+        background: rgba(0, 0, 0, 0.35);
+        border: 1.5px solid rgba(212, 175, 55, 0.35);
+        border-radius: 4px;
+        outline: none;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+        /* Remove default browser appearance on number inputs */
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      /* Placeholder styling */
+      .lead-form__input::placeholder {
+        color: rgba(255, 250, 229, 0.3);
+      }
+
+      /* Focus ring — gold glow, keyboard-accessible */
+      .lead-form__input:focus {
+        border-color: var(--color-gold-ornate);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+      }
+
+      /* Invalid state — shown after user tries to submit with bad data */
+      .lead-form__input:invalid:not(:placeholder-shown) {
+        border-color: var(--color-neon-flamingo);
+      }
+
+      /* Submit button */
+      .lead-form__submit {
+        width: 100%;
+        padding: 0.85em 1em;
+        font-family: var(--font-subheading);
+        font-size: clamp(1rem, 3.5vw, 1.15rem);
+        letter-spacing: 0.12em;
+        color: #1a0010; /* very dark maroon — readable on gold */
+        background: var(--color-gold-ornate);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          transform 0.1s ease,
+          box-shadow 0.2s ease;
+        margin-top: 0.25rem;
+      }
+
+      .lead-form__submit:hover {
+        background: var(--color-gold-light);
+        box-shadow: 0 0 18px rgba(212, 175, 55, 0.4);
+      }
+
+      /* Button press feedback */
+      .lead-form__submit:active {
+        transform: scale(0.98);
+      }
+
+      /* While the fetch is in-flight, disable and dim the button */
+      .lead-form__submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Focus ring on button for keyboard users */
+      .lead-form__submit:focus-visible {
+        outline: 3px solid var(--color-amber-flash);
+        outline-offset: 3px;
+      }
+
+      /* ── Status messages (success / error) ──────────────────────── */
+
+      /* Shared base for both states — hidden by default */
+      .lead-form__status {
+        display: none; /* shown by JS when needed */
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        line-height: 1.5;
+        text-align: center;
+        padding: 0.75em 1em;
+        border-radius: 4px;
+        border: 1px solid transparent;
+      }
+
+      /* Success state */
+      .lead-form__status--success {
+        display: block;
+        color: #d4f5d4;
+        background: rgba(0, 109, 111, 0.25); /* teal tint */
+        border-color: rgba(0, 109, 111, 0.5);
+      }
+
+      /* Error state */
+      .lead-form__status--error {
+        display: block;
+        color: #ffd6e0;
+        background: rgba(255, 0, 110, 0.15); /* flamingo tint */
+        border-color: rgba(255, 0, 110, 0.4);
+      }
+
+      /* Small privacy note below form */
+      .lead-form__privacy {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        color: rgba(255, 250, 229, 0.35);
+        text-align: center;
+        line-height: 1.5;
+      }
     </style>
   </head>
 
@@ -1025,6 +1208,126 @@
       </section>
       <!-- /.countdown-section -->
 
+      <!-- =====================================================
+      LEAD COLLECTION FORM
+      Collects Name + Phone and sends to Google Apps Script,
+      which writes the data to a Google Sheet.
+
+      HOW TO CONNECT YOUR SHEET:
+      1. Follow the instructions in apps-script.gs
+      2. Deploy it as a Web App and copy the URL
+      3. Paste that URL into APPS_SCRIPT_URL below in the <script>
+    ===================================================== -->
+      <section class="lead-section" aria-labelledby="lead-heading">
+        <!-- Decorative divider above the form -->
+        <svg
+          class="ornament-divider"
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 340 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g fill="none" stroke="#D4AF37" stroke-linecap="round">
+            <line x1="0" y1="12" x2="120" y2="12" stroke-width="1" />
+            <path
+              d="M120,12 C130,4 138,4 145,12 C152,20 160,20 170,12 C180,4 188,4 195,12 C202,20 210,20 220,12"
+              stroke-width="1.5"
+            />
+            <line x1="220" y1="12" x2="340" y2="12" stroke-width="1" />
+            <circle cx="170" cy="12" r="3" fill="#D4AF37" opacity="0.8" />
+            <circle cx="120" cy="12" r="2" fill="#D4AF37" opacity="0.5" />
+            <circle cx="220" cy="12" r="2" fill="#D4AF37" opacity="0.5" />
+          </g>
+        </svg>
+
+        <h2 class="lead-section__heading" id="lead-heading">
+          Stay in the Loop
+        </h2>
+        <p class="lead-section__subtext">
+          Enter details to know about early bird offers and exclusive updates!
+        </p>
+
+        <!-- The actual form
+           novalidate: we handle validation in JS for better UX
+           The form does NOT have an action= attribute — submission
+           is handled entirely by fetch() in the script below.
+      -->
+        <form
+          class="lead-form"
+          id="lead-form"
+          novalidate
+          aria-label="Register your interest for Tatvam 2026"
+        >
+          <!-- Name field -->
+          <div class="lead-form__field">
+            <label class="lead-form__label" for="field-name">Name</label>
+            <input
+              class="lead-form__input"
+              type="text"
+              id="field-name"
+              name="name"
+              autocomplete="name"
+              required
+              minlength="2"
+              aria-required="true"
+            />
+          </div>
+
+          <!-- Phone field -->
+          <div class="lead-form__field">
+            <label class="lead-form__label" for="field-phone"
+              >Contact Number</label
+            >
+            <input
+              class="lead-form__input"
+              type="tel"
+              id="field-phone"
+              name="phone"
+              autocomplete="tel"
+              required
+              pattern="[0-9]{10}"
+              maxlength="10"
+              inputmode="numeric"
+              aria-required="true"
+              aria-describedby="phone-hint"
+            />
+            <!-- Screen-reader hint; also shown visually as placeholder -->
+            <span id="phone-hint" style="display: none"
+              >Enter a 10-digit Indian mobile number</span
+            >
+          </div>
+
+          <!-- Submit button
+             The text changes to a spinner during submission (via JS).
+        -->
+          <button
+            class="lead-form__submit"
+            type="submit"
+            id="lead-submit"
+            aria-live="polite"
+          >
+            Notify Me
+          </button>
+
+          <!-- Status message area — toggled by JS after submission -->
+          <div
+            class="lead-form__status"
+            id="lead-status"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></div>
+        </form>
+        <!-- /.lead-form -->
+
+        <!-- Privacy reassurance -->
+        <!-- <p class="lead-form__privacy">
+          We only use your details to contact you about Tatvam 2026. No spam,
+          ever.
+        </p> -->
+      </section>
+      <!-- /.lead-section -->
+
       <!-- Bottom lotus ornament -->
       <div class="bottom-ornament" aria-hidden="true">
         <svg
@@ -1182,6 +1485,194 @@
 
       // ── Then update every second ──────────────────────────────────
       const timerId = setInterval(tick, 1000);
+
+      /* ============================================================
+      LEAD FORM — submission handler
+      Sends name + phone to Google Apps Script via fetch().
+      Apps Script writes the row to your Google Sheet.
+
+      SETUP: Replace the placeholder URL below with your own
+      deployed Apps Script Web App URL. See apps-script.gs for
+      the script and deployment steps.
+    ============================================================ */
+
+      /**
+       * IMPORTANT — paste your Apps Script Web App URL here.
+       * It looks like:
+       * https://script.google.com/macros/s/AKfyc.../exec
+       *
+       * Leave this as the placeholder and the form will show an
+       * error reminding you to set it up.
+       */
+      // const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_URL_HERE";
+      const APPS_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbzswRbfm29d_TT3fvI8ioqOXh0l3pKu1pB_E85AKEU7QLWoUp2v6egTj249qwX3qT0/exec";
+
+      // ── DOM references for form elements ─────────────────────────
+      const leadForm = document.getElementById("lead-form");
+      const nameInput = document.getElementById("field-name");
+      const phoneInput = document.getElementById("field-phone");
+      const submitBtn = document.getElementById("lead-submit");
+      const statusEl = document.getElementById("lead-status");
+
+      /**
+       * Show a status message below the form.
+       * Clears existing state classes first, then applies the right one.
+       *
+       * @param {string} message  - Text to display.
+       * @param {'success'|'error'} type - Which visual style to apply.
+       */
+      function showStatus(message, type) {
+        // Remove previous state classes
+        statusEl.classList.remove(
+          "lead-form__status--success",
+          "lead-form__status--error",
+        );
+        // Set message text
+        statusEl.textContent = message;
+        // Apply the right class (also sets display: block via CSS)
+        statusEl.classList.add(`lead-form__status--${type}`);
+        // Scroll the message into view on mobile so user sees it
+        statusEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      /**
+       * Hide the status message (called when user edits fields after an error).
+       */
+      function hideStatus() {
+        statusEl.classList.remove(
+          "lead-form__status--success",
+          "lead-form__status--error",
+        );
+        statusEl.textContent = "";
+        // CSS hides it when neither class is present (display:none on base)
+      }
+
+      /**
+       * Validate a single field and return an error string, or null if valid.
+       * We do this manually (rather than relying on the browser's default UI)
+       * so we can control the error presentation and keep it on-brand.
+       *
+       * @param {HTMLInputElement} input
+       * @returns {string|null}
+       */
+      function validateField(input) {
+        const val = input.value.trim();
+
+        if (input.id === "field-name") {
+          if (!val) return "Please enter your name.";
+          if (val.length < 2) return "Name must be at least 2 characters.";
+        }
+
+        if (input.id === "field-phone") {
+          if (!val) return "Please enter your contact number.";
+          // Must be exactly 10 digits
+          if (!/^[0-9]{10}$/.test(val))
+            return "Enter a valid 10-digit mobile number.";
+        }
+
+        return null; // valid
+      }
+
+      // ── Hide status message when user starts correcting a field ──
+      [nameInput, phoneInput].forEach((input) => {
+        input.addEventListener("input", hideStatus);
+      });
+
+      // ── Form submit handler ───────────────────────────────────────
+      leadForm.addEventListener("submit", async function handleSubmit(event) {
+        // Prevent the default browser form submission (which would reload the page)
+        event.preventDefault();
+
+        // ── 1. Validate both fields ────────────────────────────────
+        const nameError = validateField(nameInput);
+        const phoneError = validateField(phoneInput);
+
+        if (nameError) {
+          showStatus(nameError, "error");
+          nameInput.focus();
+          return;
+        }
+        if (phoneError) {
+          showStatus(phoneError, "error");
+          phoneInput.focus();
+          return;
+        }
+
+        // ── 2. Guard: check the URL has been configured ────────────
+        if (APPS_SCRIPT_URL === "YOUR_APPS_SCRIPT_URL_HERE") {
+          showStatus(
+            "⚠️ Form not yet connected. See apps-script.gs to set up your Google Sheet.",
+            "error",
+          );
+          return;
+        }
+
+        // ── 3. Disable button and show loading state ───────────────
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+
+        // ── 4. Build the payload ───────────────────────────────────
+        // We use URLSearchParams so Apps Script can read it with
+        // e.parameter.name etc. (simpler than parsing JSON on that end)
+        const payload = new URLSearchParams({
+          name: nameInput.value.trim(),
+          phone: phoneInput.value.trim(),
+          timestamp: new Date().toISOString(), // ISO string — Apps Script converts it
+          source: "tatvam2026-landing", // helps you filter in the sheet
+        });
+
+        // ── 5. Send to Apps Script ─────────────────────────────────
+        try {
+          /**
+           * We use fetch() with no-cors mode because Apps Script Web Apps
+           * don't send CORS headers on the initial redirect.
+           * This means we can't read the response body, but we CAN tell
+           * if the network request succeeded (no exception thrown).
+           *
+           * Apps Script will still receive and process the data correctly.
+           */
+          await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors", // required for Apps Script Web Apps
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: payload.toString(),
+          });
+
+          // ── 6a. Success ──────────────────────────────────────────
+          // With no-cors we can't inspect the response, so we optimistically
+          // treat a non-throwing fetch as a success.
+          showStatus(
+            "🎉 You're on the list! Our team will be in touch soon.",
+            "success",
+          );
+
+          // Clear fields and reset button
+          leadForm.reset();
+          submitBtn.textContent = "Sent!";
+        } catch (err) {
+          // ── 6b. Network error ────────────────────────────────────
+          // This fires if the user is offline or the URL is completely wrong.
+          console.error("Lead form submission error:", err);
+          showStatus(
+            "Something went wrong. Please check your connection and try again.",
+            "error",
+          );
+          submitBtn.textContent = "Notify Me"; // restore original label
+        } finally {
+          // Always re-enable the button after a short delay
+          // (prevents frantic double-clicking)
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            // If it still says "Sent!" keep it; otherwise restore default
+            if (submitBtn.textContent === "Sent!") {
+              setTimeout(() => {
+                submitBtn.textContent = "Notify Me";
+              }, 3000);
+            }
+          }, 1500);
+        }
+      });
     </script>
   </body>
 </html>
