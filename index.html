@@ -48,6 +48,14 @@
         font-display: block;
       }
 
+      @font-face {
+        font-family: "Luckybones";
+        src: url("./assets/Luckybones.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
       /* ============================================================
       DESIGN TOKENS — all colours and values as CSS variables
       so a junior dev can tweak the palette in one place
@@ -66,7 +74,7 @@
         /* Typography scale */
         --font-heading: "ActionIsShaded", "Georgia", serif;
         --font-subheading: "Amsterdam", "Georgia", serif;
-        --font-body: "Inter", "system-ui", sans-serif;
+        --font-body: "Luckybones", "Inter", "system-ui", sans-serif;
 
         /* Spacing */
         --space-xs: 0.5rem;
