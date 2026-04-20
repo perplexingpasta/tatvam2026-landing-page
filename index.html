@@ -76,7 +76,7 @@
         --space-xl: 5rem;
 
         /* Countdown tile sizing */
-        --tile-size: clamp(50px, 14vw, 130px);
+        --tile-size: clamp(80px, 22vw, 130px);
       }
 
       /* ============================================================
@@ -190,7 +190,7 @@
     ============================================================ */
       .event-title {
         font-family: var(--font-heading);
-        font-size: clamp(3.2rem, 16vw, 10rem);
+        font-size: clamp(3.2rem, 15vw, 10rem);
         line-height: 0.95;
         text-align: center;
         letter-spacing: 0.04em;
@@ -280,10 +280,16 @@
       /* Grid of 4 tiles: DD HH MM SS */
       .countdown-grid {
         display: flex;
-        gap: clamp(0.25rem, 2.5vw, 1.2rem);
+        gap: clamp(0.5rem, 2.5vw, 1.2rem);
         align-items: flex-start;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: center;
+      }
+
+      .countdown-group {
+        display: flex;
+        gap: clamp(0.5rem, 2.5vw, 1.2rem);
+        align-items: flex-start;
       }
 
       .countdown-tile {
@@ -301,7 +307,7 @@
         align-items: center;
         justify-content: center;
         font-family: var(--font-heading);
-        font-size: clamp(1.2rem, 7vw, 4rem);
+        font-size: clamp(1.8rem, 8vw, 4rem);
         color: var(--color-gold-ornate);
         /* Deep background with ornate border */
         background: rgba(0, 0, 0, 0.35);
@@ -466,6 +472,15 @@
       /* ============================================================
       RESPONSIVE TWEAKS
     ============================================================ */
+      @media (max-width: 600px) {
+        .hide-on-mobile {
+          display: none !important;
+        }
+        .countdown-grid {
+          gap: 1.5rem;
+        }
+      }
+
       @media (max-width: 400px) {
         /* Tighten vertical spacing on very small screens */
         .page-wrapper {
@@ -473,7 +488,7 @@
           padding-bottom: 4rem;
         }
         .countdown-grid {
-          gap: 0.4rem;
+          gap: 1rem;
         }
       }
 
@@ -500,10 +515,27 @@
       }
 
       .hero-logo {
-        max-width: 90vw;
-        max-height: 80vh;
+        /* Mobile: occupy most of the width but cap height to avoid pushing content too far */
+        width: 32rem;
+        max-height: 60vh;
         object-fit: contain;
         animation: fadeSlideDown 1s ease both;
+      }
+
+      @media (min-width: 768px) {
+        /* Tablet: slightly more breathing room */
+        .hero-logo {
+          width: 80vw;
+          max-height: 70vh;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        /* Desktop: keep it centered and professional */
+        .hero-logo {
+          width: 70vw;
+          max-height: 80vh;
+        }
       }
 
       .scroll-indicator {
@@ -520,30 +552,39 @@
         align-items: center;
         gap: 0.3rem;
         opacity: 0.85;
-        animation:
-          bounce 2s infinite,
-          fadeSlideDown 1s ease both 0.5s;
+        /* Entrance animation only here */
+        animation: fadeSlideDownCentered 1s ease both 0.5s;
       }
 
       .scroll-indicator svg {
         width: clamp(1.2rem, 4vw, 1.5rem);
         height: clamp(1.2rem, 4vw, 1.5rem);
         fill: currentColor;
+        /* Continuous pointing animation on the SVG to avoid transform conflicts */
+        animation: pointDown 2s ease-in-out infinite;
       }
 
-      @keyframes bounce {
+      /* Subtle downward pointing motion every 3 seconds */
+      @keyframes pointDown {
         0%,
-        20%,
-        50%,
-        80%,
+        85%,
         100% {
+          transform: translateY(0);
+        }
+        92% {
+          transform: translateY(4px);
+        }
+      }
+
+      /* Entrance animation that respects the horizontal centering */
+      @keyframes fadeSlideDownCentered {
+        from {
+          opacity: 0;
+          transform: translateY(-20px) translateX(-50%);
+        }
+        to {
+          opacity: 1;
           transform: translateY(0) translateX(-50%);
-        }
-        40% {
-          transform: translateY(-12px) translateX(-50%);
-        }
-        60% {
-          transform: translateY(-6px) translateX(-50%);
         }
       }
     </style>
@@ -886,7 +927,7 @@
         nostalgia, colour, and youthful vibrance into one unforgettable
         experience. This year’s fest is a tribute to heritage- reimagined
         through a modern lens. Here, retro isn’t just an aesthetic. It’s a
-        memory. A feeling. A shared identity. Picture abhi baaki hai 🥀
+        memory. A feeling. A shared identity. <br />Picture abhi baaki hai 🥀
       </p>
 
       <!-- =====================================================
@@ -907,46 +948,66 @@
           aria-atomic="true"
           aria-labelledby="countdown-label"
         >
-          <!-- Days -->
-          <div class="countdown-tile" id="tile-days">
-            <div class="countdown-tile__value" id="val-days" aria-hidden="true">
-              00
+          <!-- Days & Hours Group -->
+          <div class="countdown-group">
+            <!-- Days -->
+            <div class="countdown-tile" id="tile-days">
+              <div
+                class="countdown-tile__value"
+                id="val-days"
+                aria-hidden="true"
+              >
+                00
+              </div>
+              <span class="countdown-tile__unit">Days</span>
             </div>
-            <span class="countdown-tile__unit">Days</span>
+
+            <span class="countdown-colon" aria-hidden="true">:</span>
+
+            <!-- Hours -->
+            <div class="countdown-tile" id="tile-hours">
+              <div
+                class="countdown-tile__value"
+                id="val-hours"
+                aria-hidden="true"
+              >
+                00
+              </div>
+              <span class="countdown-tile__unit">Hours</span>
+            </div>
           </div>
 
-          <span class="countdown-colon" aria-hidden="true">:</span>
+          <span class="countdown-colon hide-on-mobile" aria-hidden="true"
+            >:</span
+          >
 
-          <!-- Hours -->
-          <div class="countdown-tile" id="tile-hours">
-            <div
-              class="countdown-tile__value"
-              id="val-hours"
-              aria-hidden="true"
-            >
-              00
+          <!-- Mins & Secs Group -->
+          <div class="countdown-group">
+            <!-- Minutes -->
+            <div class="countdown-tile" id="tile-mins">
+              <div
+                class="countdown-tile__value"
+                id="val-mins"
+                aria-hidden="true"
+              >
+                00
+              </div>
+              <span class="countdown-tile__unit">Mins</span>
             </div>
-            <span class="countdown-tile__unit">Hours</span>
-          </div>
 
-          <span class="countdown-colon" aria-hidden="true">:</span>
+            <span class="countdown-colon" aria-hidden="true">:</span>
 
-          <!-- Minutes -->
-          <div class="countdown-tile" id="tile-mins">
-            <div class="countdown-tile__value" id="val-mins" aria-hidden="true">
-              00
+            <!-- Seconds -->
+            <div class="countdown-tile" id="tile-secs">
+              <div
+                class="countdown-tile__value"
+                id="val-secs"
+                aria-hidden="true"
+              >
+                00
+              </div>
+              <span class="countdown-tile__unit">Secs</span>
             </div>
-            <span class="countdown-tile__unit">Mins</span>
-          </div>
-
-          <span class="countdown-colon" aria-hidden="true">:</span>
-
-          <!-- Seconds -->
-          <div class="countdown-tile" id="tile-secs">
-            <div class="countdown-tile__value" id="val-secs" aria-hidden="true">
-              00
-            </div>
-            <span class="countdown-tile__unit">Secs</span>
           </div>
         </div>
         <!-- /.countdown-grid -->
